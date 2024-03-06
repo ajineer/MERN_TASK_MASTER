@@ -1,8 +1,8 @@
 import { createContext, useReducer } from 'react'
 
-export const ListsContext = createContext()
+export const ListContext = createContext()
 
-export const ListsReducer = (state, action) => {
+export const ListReducer = (state, action) => {
   switch (action.type) {
     case 'SET_LISTS': 
       return {
@@ -27,14 +27,14 @@ export const ListsReducer = (state, action) => {
   }
 }
 
-export const ListsContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(ListsReducer, {
+export const ListContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(ListReducer, {
     lists: [],
   })
 
   return (
-    <ListsContext.Provider value={{...state, dispatch}}>
+    <ListContext.Provider value={{...state, dispatch}}>
       { children }
-    </ListsContext.Provider>
+    </ListContext.Provider>
   )
 }

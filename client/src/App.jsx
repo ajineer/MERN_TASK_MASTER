@@ -1,6 +1,14 @@
+import NavBar from "./components/NavBar"
+import Home from "./pages/Home"
+import Login from "./pages/Login"
+import Signup from "./pages/Signup"
+import { Routes, Route, Navigate } from "react-router-dom"
+import { useAuthContext } from "./hooks/useAuthContext"
 
 
 function App() {
+
+  const {user} = useAuthContext()
 
   return (
     <div>

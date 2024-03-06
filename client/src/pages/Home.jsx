@@ -1,6 +1,6 @@
-import { useEffect, useState }from 'react'
-import { useListsContext } from "../hooks/useListsContext"
-import { useAuthContext } from "../hooks/useAuthContext"
+// import { useEffect, useState }from 'react'
+// import { useListsContext } from "../hooks/useListsContext"
+// import { useAuthContext } from "../hooks/useAuthContext"
 
 // components
 
@@ -8,21 +8,21 @@ import { useAuthContext } from "../hooks/useAuthContext"
 import { fetchListReq } from '../routes/listRoutes'
 
 const Home = () => {
-    const {lists, dispatch} = useListsContext() 
-    const {user} = useAuthContext()
+    // const {lists, dispatch} = useListsContext() 
+    // const {user} = useAuthContext()
 
-    useEffect(() => {
-        const fetchLists = async () => {
-            const response = await fetchListReq(user)
-            const json = await response.json()
-            if (response.ok){
-                dispatch({type: 'SET_LISTS', payload: json})
-            }
-        }
-        if(user){
-            fetchLists()
-        }
-    },[dispatch, user])
+    // useEffect(() => {
+    //     const fetchLists = async () => {
+    //         const response = await fetchListReq(user)
+    //         const json = await response.json()
+    //         if (response.ok){
+    //             dispatch({type: 'SET_LISTS', payload: json})
+    //         }
+    //     }
+    //     if(user){
+    //         fetchLists()
+    //     }
+    // },[dispatch, user])
 
     return (
         <div>

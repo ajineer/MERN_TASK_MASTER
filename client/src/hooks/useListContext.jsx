@@ -1,11 +1,11 @@
-import { ListsContext } from "../context/ListContext";
+import { ListContext } from "../context/ListContext.jsx";
 import { useContext } from "react";
 
-export const useListsContext = () => {
-    const context = useContext(ListsContext)
+export const useListContext = () => {
+    const context = useContext(ListContext)
 
     if(!context){
-        throw Error('useListsContext must be used inside ListsContextProvider')
+        throw Error('useListContext must be used inside ListContextProvider')
     }
 
     return context
