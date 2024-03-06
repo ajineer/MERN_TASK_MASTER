@@ -4,7 +4,7 @@ const mongoose = require("mongoose")
 const cors = require('cors')
 const app = express();
 const listRoutes = require('./routes/lists')
-const userRoutes = require('./routes/user')
+const userRoutes = require('./routes/users')
 const taskRoutes = require('./routes/tasks')
 
 app.use(express.json());
