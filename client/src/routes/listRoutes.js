@@ -1,4 +1,17 @@
-export const patchListReq = async (list, user, editListForm) =>{
+export const postListReq = async (e, user, listForm) => {
+    const response = await fetch(`http://localhost:5555/api/lists`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${user.token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(listForm) 
+    })
+
+    return response
+}
+
+export const patchListReq = async (list, user, editListForm) => {
     const response = await fetch(`http://localhost:5555/api/lists/${list._id}`, {
         method: 'PATCH',
         headers: {
@@ -29,4 +42,5 @@ export const fetchListReq = async (user) => {
                     'Authorization': `Bearer ${user.token}`
                 }
             })
+    return response
 }

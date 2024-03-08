@@ -23,7 +23,7 @@ const NavBar = () => {
                     <Typography align="center" variant="h2" component="h2" sx={{borderTop:"2px solid black", borderBottom:'2px solid black', width:'fit-content', margin: '1rem auto 0 auto'}}>Task Master</Typography>
                 </Grid>
                 <Grid item xs={6} sx={{display:'flex', justifyContent:'center'}}>
-                    <Link compoennt={Button} href='/'>Home</Link>
+                    <Link component={Button} href='/'>Home</Link>
                 </Grid>
                 <Grid item xs={6} sx={{display:'flex', justifyContent:'center'}}>
                     <Button onClick={() => handleClick()}>Log out</Button>

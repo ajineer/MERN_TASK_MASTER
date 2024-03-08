@@ -5,7 +5,7 @@ import Signup from "./pages/Signup"
 import { Routes, Route, Navigate } from "react-router-dom"
 import { useAuthContext } from "./hooks/useAuthContext"
 import { Box, Container } from "@mui/material"
-import { accent1, secondary } from "./styles/colors"
+import { accent1, primary, secondary } from "./styles/colors"
 
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
 
   return (
     <Box component='div' sx={{ display: 'block', height: '97vh', background: 'linear-gradient(#7495A8, #E3F5FF)'}}>
-      <Container maxWidth='lg' sx={{border: 'black solid 2px'}}>
+      <Container component='div' maxWidth='md' sx={{display: 'block', border: 'black solid 2px', height: '75%', backgroundColor: primary}}>
         <NavBar/>
         <Routes>
           <Route path='/' element={user ? <Home/> : <Navigate to="/login"/>}/>
