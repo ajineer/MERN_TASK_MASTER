@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useListContext } from '../hooks/useListContext'
 import { useAuthContext } from '../hooks/useAuthContext'
-import { Box, Button, Container, List, ListItem, Paper, TextField } from '@mui/material'
+import { Box, Button, Container, List, ListItem, Paper, TextField, Typography } from '@mui/material'
 import NewListForm from '../components/NewListForm'
 
 // components
@@ -9,11 +9,14 @@ import NewListForm from '../components/NewListForm'
 // routes
 import { fetchListReq, patchListReq } from '../routes/listRoutes'
 import DeleteBtn from '../components/DeleteBtn'
+import Task from '../components/Task'
+import NewTaskForm from '../components/NewTaskForm'
 
 const Home = () => {
     const {lists, dispatch} = useListContext() 
     const {user} = useAuthContext()
     const [edit, setEdit] = useState(false)
+    const [selList, setSelList] = useState(lists[0])
     const [editListForm, setEditListForm] = useState({
         title: ''
     })
@@ -24,6 +27,7 @@ const Home = () => {
             const json = await response.json()
             if (response.ok){
                 dispatch({type: 'SET_LISTS', payload: json})
+                setSelList(lists[0])
             }
         }
         if(user){
@@ -52,7 +56,10 @@ const Home = () => {
                         return <ListItem key={list._id}>
                                 {!edit? 
                                 <Box>
-                                    {list.title} <Button onClick={() => setEdit(true)}>/</Button><DeleteBtn list={list} user={user}/>
+                                    <Typography onClick={() => setSelList(list)}>
+                                        {list.title}
+                                    </Typography>
+                                    <Button onClick={() => setEdit(true)}>/</Button><DeleteBtn list={list} user={user}/>
                                 </Box>
                                 : 
                                 <form onSubmit={(e) => handleClick(list, e)}>
@@ -64,7 +71,12 @@ const Home = () => {
                 </List>
             </Paper>
             <Paper>
-
+                <NewTaskForm/>
+                <List>
+                    {selList?.tasks?.map(task => {
+                        return <Task selList={selList} task={task}/>
+                    })}
+                </List>
             </Paper>
         </Container>
     )

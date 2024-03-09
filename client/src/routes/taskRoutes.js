@@ -26,3 +26,15 @@ export const patchTaskReq = async (e, task, user) => {
 
     return response
 }
+
+export const postTaskReq = async (taskForm, user) => {
+    const response = await fetch('http://localhost:5555/api/tasks', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Berer ${user.token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(taskForm)
+    })
+    return response
+}
