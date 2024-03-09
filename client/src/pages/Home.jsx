@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react'
 import { useListContext } from '../hooks/useListContext'
 import { useAuthContext } from '../hooks/useAuthContext'
-import { Container, List, ListItem, Paper } from '@mui/material'
+import { Box, Button, Container, List, ListItem, Paper, TextField } from '@mui/material'
 import NewListForm from '../components/NewListForm'
 
 // components
 
 // routes
-import { fetchListReq } from '../routes/listRoutes'
+import { fetchListReq, patchListReq } from '../routes/listRoutes'
 import DeleteBtn from '../components/DeleteBtn'
 
 const Home = () => {
     const {lists, dispatch} = useListContext() 
     const {user} = useAuthContext()
+    const [edit, setEdit] = useState(false)
+    const [editListForm, setEditListForm] = useState({
+        title: ''
+    })
 
     useEffect(() => {
         const fetchLists = async () => {
@@ -27,13 +31,35 @@ const Home = () => {
         }
     },[dispatch, user])
 
+    const handleClick = async (list, e) => {
+        e.preventDefault()
+        const response = await patchListReq(list, user, editListForm)
+        const json = await response.json()
+        if(response.ok){
+            dispatch({type:'UPDATE_LIST', payload: json})
+            setEdit(false)
+        }else{
+            console.log(json.error)
+        }
+    }
+
     return (
         <Container sx={{display: 'flex'}}>
             <Paper sx={{display: 'flex', flexDirection: 'column'}}>
                 <NewListForm />
                 <List>
                     {lists.map(list => {
-                        return <ListItem key={list._id}>{list.title}<DeleteBtn list={list} user={user}/></ListItem>
+                        return <ListItem key={list._id}>
+                                {!edit? 
+                                <Box>
+                                    {list.title} <Button onClick={() => setEdit(true)}>/</Button><DeleteBtn list={list} user={user}/>
+                                </Box>
+                                : 
+                                <form onSubmit={(e) => handleClick(list, e)}>
+                                    <TextField onChange={(e) => setEditListForm({title: e.target.value})} placeholder={list.title}/>
+                                </form>
+                                }
+                            </ListItem>
                     })}
                 </List>
             </Paper>
