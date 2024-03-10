@@ -61,7 +61,7 @@ const deleteTask = async (req, res) => {
         await task.deleteOne({_id: id})
 
         console.log('Task deleted successfully')
-        res.status(204).json(task)
+        return res.status(200).json(list)
     } catch (error) {
         console.error('Error deleting task:', error)
         res.status(500).json({ error: 'Internal server error' })

@@ -27,13 +27,12 @@ const Home = () => {
             const json = await response.json()
             if (response.ok){
                 dispatch({type: 'SET_LISTS', payload: json})
-                setSelList(lists[0])
             }
         }
         if(user){
             fetchLists()
         }
-    },[dispatch, user])
+    },[dispatch, user, setSelList])
 
     const handleClick = async (list, e) => {
         e.preventDefault()
@@ -50,13 +49,14 @@ const Home = () => {
     return (
         <Container sx={{display: 'flex'}}>
             <Paper sx={{display: 'flex', flexDirection: 'column'}}>
+                <Typography variant='h4' sx={{margin: '0 auto 0 auto'}}>Lists</Typography>
                 <NewListForm />
                 <List>
                     {lists.map(list => {
                         return <ListItem key={list._id}>
                                 {!edit? 
                                 <Box>
-                                    <Typography onClick={() => setSelList(list)}>
+                                    <Typography sx={{"&:hover": {backgroundColor: 'grey', cursor: 'pointer'}}} onClick={() => setSelList(list)}>
                                         {list.title}
                                     </Typography>
                                     <Button onClick={() => setEdit(true)}>/</Button><DeleteBtn list={list} user={user}/>
@@ -71,10 +71,13 @@ const Home = () => {
                 </List>
             </Paper>
             <Paper>
-                <NewTaskForm/>
+                <Typography variant='h4'>
+                    {selList?.title}
+                </Typography>
+                {selList && <NewTaskForm setSelList={setSelList} selList={selList}/>}
                 <List>
                     {selList?.tasks?.map(task => {
-                        return <Task selList={selList} task={task}/>
+                        return <Task key={task._id} setSelList={setSelList} selList={selList} task={task}/>
                     })}
                 </List>
             </Paper>

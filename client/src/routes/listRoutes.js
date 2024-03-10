@@ -44,3 +44,15 @@ export const fetchListReq = async (user) => {
             })
     return response
 }
+
+export const postTaskReq = async (selList, taskForm, user) => {
+    const response = await fetch(`http://localhost:5555/api/lists/${selList._id}`, {
+        method: 'POST',
+        headers: {
+            'Authorization': `Berer ${user.token}`,
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(taskForm)
+    })
+    return response
+}

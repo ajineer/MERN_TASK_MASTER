@@ -1,10 +1,10 @@
-import { TextField } from "@mui/material"
-import { postTaskReq } from "../routes/taskRoutes"
+import { Button, TextField } from "@mui/material"
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useListContext } from "../hooks/useListContext"
 import { useState } from "react"
+import { postTaskReq } from "../routes/listRoutes"
 
-const NewTaskForm = () => {
+const NewTaskForm = ({setSelList, selList}) => {
 
     const {user} = useAuthContext()
     const {lists, dispatch} = useListContext()
@@ -15,11 +15,12 @@ const NewTaskForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const response = await postTaskReq(taskForm, user)
+        const response = await postTaskReq(selList, taskForm, user)
         const json = await response.json()
         if(response.ok){
-            const updatedList = lists.filter((l._id) === json.list)
-            dispatch({type: 'UPDATE_LIST', payload: updatedList})
+            setSelList({...selList, tasks: [...selList.tasks, json]})
+            dispatch({type: "UPDATE_LIST", payload: selList})
+            e.target.reset()
         }else{
             console.log(json.error)
         }
@@ -29,6 +30,7 @@ const NewTaskForm = () => {
     return (
         <form onSubmit={(e) => handleSubmit(e)}>
             <TextField onChange={(e) => setTaskForm({name: e.target.value})} placeholder="enter task"/>
+            <Button type="submit">+</Button>
         </form>
     )
 }
