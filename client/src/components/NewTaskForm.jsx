@@ -4,7 +4,7 @@ import { useListContext } from "../hooks/useListContext"
 import { useState } from "react"
 import { postTaskReq } from "../routes/listRoutes"
 
-const NewTaskForm = ({setSelList, selList}) => {
+const NewTaskForm = ({index}) => {
 
     const {user} = useAuthContext()
     const {lists, dispatch} = useListContext()
@@ -15,11 +15,11 @@ const NewTaskForm = ({setSelList, selList}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const response = await postTaskReq(selList, taskForm, user)
+        const response = await postTaskReq(lists[index], taskForm, user)
         const json = await response.json()
         if(response.ok){
-            setSelList({...selList, tasks: [...selList.tasks, json]})
-            dispatch({type: "UPDATE_LIST", payload: selList})
+            lists[index].tasks = [...lists[index].tasks, json]
+            dispatch({type: "UPDATE_LIST", payload: lists[index]})
             e.target.reset()
         }else{
             console.log(json.error)
@@ -28,9 +28,9 @@ const NewTaskForm = ({setSelList, selList}) => {
     }
 
     return (
-        <form onSubmit={(e) => handleSubmit(e)}>
-            <TextField onChange={(e) => setTaskForm({name: e.target.value})} placeholder="enter task"/>
-            <Button type="submit">+</Button>
+        <form style={{display: 'flex', margin: '1rem 0 0 1rem'}} onSubmit={(e) => handleSubmit(e)}>
+            <input onChange={(e) => setTaskForm({name: e.target.value})} placeholder="enter task"/>
+            <button style={{width: 'fit-content'}} type="submit">+</button>
         </form>
     )
 }

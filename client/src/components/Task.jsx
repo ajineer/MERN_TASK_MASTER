@@ -1,10 +1,10 @@
-import { Box, Button, Checkbox, ListItem, TextField, Typography } from "@mui/material"
+import { Box, Button, Checkbox, ListItem, Paper, TextField, Typography } from "@mui/material"
 import { deleteTaskReq, patchTaskReq } from "../routes/taskRoutes"
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useListContext } from "../hooks/useListContext"
 import { useEffect, useState } from "react"
 
-const Task = ({ setSelList, selList, task}) => {
+const Task = ({index, task}) => {
     
     const {user} = useAuthContext()
     const {lists, dispatch} = useListContext()
@@ -13,18 +13,19 @@ const Task = ({ setSelList, selList, task}) => {
         name: '',
         status: false
     })
-    const list = lists.filter(l => l._id === task.list)
 
     useEffect(() => {
         setEditTaskForm({...task})
-    },[selList, task])
+    },[ task])
 
     const handleDelete = async (e) => {
         const response = await deleteTaskReq(task, user)
         const json = await response.json()
         if(response.ok){
-            setSelList(json)
-            dispatch({type: 'UPDATE_LIST', payload: json})
+            //updatedList = { ...lists[index], tasks: lists[index].tasks.filter(t => t._id !== task._id)}
+            const updatedList = lists[index]
+            updatedList.tasks.filter(t => t._id !== task._id)
+            dispatch({type: 'UPDATE_LIST', payload: updatedList})
         }
     }
 
@@ -33,12 +34,12 @@ const Task = ({ setSelList, selList, task}) => {
         e.preventDefault()
         const response = await patchTaskReq(e, task, user)
         const json = await response.json()
-        list.tasks?.map(t => {
+        lists[index].tasks?.map(t => {
             return t._id === task._id ? json : t
         })
         if(response.ok){
             setEditTaskForm({...json})
-            dispatch({type: 'UPDATE_LIST', payload: list})
+            dispatch({type: 'UPDATE_LIST', payload: lists[index]})
             setEdit(false)
         }
     }
@@ -46,17 +47,18 @@ const Task = ({ setSelList, selList, task}) => {
     return (
 
         <ListItem>
-           {edit?<form onSubmit={(e) => handleEdit(e)}>
-                <TextField required name='name' onKeyDown={(e) => {if(e.key === 'Escape'){setEdit(false)}}} placeholder={editTaskForm.name} type="text" onChange={(e) => setEditTaskForm({name: e.target.value})}></TextField>
-            </form>:
-            <Box>
-                <Typography variant="span">
+            <Paper sx={{display: 'flex'}}>
+                {edit?
+                <form onSubmit={(e) => handleEdit(e)}>
+                    <input required name='name' onKeyDown={(e) => {if(e.key === 'Escape'){setEdit(false)}}} placeholder={editTaskForm.name} type="text" onChange={(e) => setEditTaskForm({name: e.target.value})}></input>
+                </form>
+                :
+                <Typography onClick={() => setEdit(true)} variant="span">
                     {editTaskForm.name}
-                </Typography>
+                </Typography>}
                 <Button onClick={(e) => handleDelete(e)}>X</Button>
-                <Button onClick={() => setEdit(true)}>/</Button>
                 <Checkbox checked={editTaskForm.status} onChange={(e) => handleEdit(e)}/>
-            </Box>}
+            </Paper>
         </ListItem>
     )
 }

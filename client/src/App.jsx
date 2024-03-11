@@ -14,7 +14,7 @@ function App() {
 
   return (
     <Box component='div' sx={{ display: 'block', height: '97vh', padding: '2rem', background: 'linear-gradient(#7495A8, #E3F5FF)'}}>
-      <Container component='div' maxWidth='md' sx={{display: 'block', border: 'black solid 2px', height: '75%', padding: '2rem', backgroundColor: primary}}>
+      <Container component='div' maxWidth='md' sx={{display: 'block', border: 'black solid 2px', height: '90%', padding: '2rem', backgroundColor: primary}}>
         <NavBar/>
         <Routes>
           <Route path='/' element={user ? <Home/> : <Navigate to="/login"/>}/>

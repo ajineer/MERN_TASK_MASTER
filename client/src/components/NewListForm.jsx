@@ -4,7 +4,7 @@ import { postListReq } from "../routes/listRoutes"
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useListContext } from "../hooks/useListContext"
 
-const NewListForm = () => {
+const NewListForm = ({setIndex}) => {
 
     const {user} = useAuthContext()
     const { dispatch } = useListContext()
@@ -29,12 +29,13 @@ const NewListForm = () => {
         if(response.ok){
             dispatch({type: 'CREATE_LIST', payload: json})
             setListForm({title: ''})
+            setIndex(lists.indexOf(json))
         }
     }
     
     return (
         <form style={{display: 'flex', alignItems: 'center', padding: '0'}} onSubmit={(e) => handleSubmit(e)}>
-            <TextField onChange={(e) => setListForm({title: e.target.value})} required type="text" value={listForm.title}/>
+            <TextField onChange={(e) => setListForm({title: e.target.value})} required type="text" value={listForm.title} placeholder="Enter list"/>
             <Button sx={{border: '2px solid black'}} type="submit">+</Button>
         </form>
     )
