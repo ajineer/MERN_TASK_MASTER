@@ -47,7 +47,7 @@ const Task = ({ setSelList, selList, task}) => {
 
         <ListItem>
            {edit?<form onSubmit={(e) => handleEdit(e)}>
-                <TextField required name='name' placeholder={editTaskForm.name} type="text" onChange={(e) => setEditTaskForm({name: e.target.value})}></TextField>
+                <TextField required name='name' onKeyDown={(e) => {if(e.key === 'Escape'){setEdit(false)}}} placeholder={editTaskForm.name} type="text" onChange={(e) => setEditTaskForm({name: e.target.value})}></TextField>
             </form>:
             <Box>
                 <Typography variant="span">
