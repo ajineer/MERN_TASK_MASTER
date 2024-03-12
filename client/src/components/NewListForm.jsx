@@ -35,8 +35,8 @@ const NewListForm = ({setIndex}) => {
     
     return (
         <form style={{display: 'flex', alignItems: 'center', padding: '0'}} onSubmit={(e) => handleSubmit(e)}>
-            <TextField onChange={(e) => setListForm({title: e.target.value})} required type="text" value={listForm.title} placeholder="Enter list"/>
-            <Button sx={{border: '2px solid black'}} type="submit">+</Button>
+            <input onChange={(e) => setListForm({title: e.target.value})} type="text" maxLength={16} value={listForm.title} placeholder="Enter list"/>
+            <button sx={{border: '2px solid black'}} type="submit">+</button>
         </form>
     )
 }

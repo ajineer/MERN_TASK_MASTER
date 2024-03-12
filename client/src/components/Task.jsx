@@ -3,6 +3,7 @@ import { deleteTaskReq, patchTaskReq } from "../routes/taskRoutes"
 import { useAuthContext } from "../hooks/useAuthContext"
 import { useListContext } from "../hooks/useListContext"
 import { useEffect, useState } from "react"
+import { green, red } from "../styles/colors"
 
 const Task = ({index, task}) => {
     
@@ -46,18 +47,20 @@ const Task = ({index, task}) => {
 
     return (
 
-        <ListItem>
-            <Paper sx={{display: 'flex'}}>
+        <ListItem sx={{display: 'flex', width: '100%'}}>
+            <Paper sx={{display: 'flex', justifyContent: 'space-between', borderLeft: `${editTaskForm.status ? green : red} solid 4px`, width: '100%'}}>
                 {edit?
                 <form onSubmit={(e) => handleEdit(e)}>
                     <input required name='name' onKeyDown={(e) => {if(e.key === 'Escape'){setEdit(false)}}} placeholder={editTaskForm.name} type="text" onChange={(e) => setEditTaskForm({name: e.target.value})}></input>
                 </form>
                 :
-                <Typography onClick={() => setEdit(true)} variant="span">
+                <Typography sx={{margin: 'auto 0 auto 1rem'}} onClick={() => setEdit(true)} variant="span">
                     {editTaskForm.name}
                 </Typography>}
-                <Button onClick={(e) => handleDelete(e)}>X</Button>
-                <Checkbox checked={editTaskForm.status} onChange={(e) => handleEdit(e)}/>
+                <Box sx={{display: 'flex'}}>
+                    <Button onClick={(e) => handleDelete(e)}>X</Button>
+                    <Checkbox checked={editTaskForm.status} onChange={(e) => handleEdit(e)}/>
+                </Box>
             </Paper>
         </ListItem>
     )

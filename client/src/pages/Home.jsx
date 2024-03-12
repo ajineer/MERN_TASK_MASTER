@@ -60,7 +60,7 @@ const Home = () => {
     }
 
     return (
-        <Container sx={{display: 'flex', flexDirection: 'column', height: 'inherit'}}>
+        <Container sx={{display: 'flex', flexDirection: 'column', height: '85%'}}>
             <Paper sx={{display: 'flex', flexDirection: {md: 'row', sm: 'column-reverse', xs: 'column-reverse'}, justifyContent:'space-evenly' , height: 'fit-content', width: {md: '75%', sm: '100%', xs: '100%'}, margin:'1rem auto 0 auto'}}>
                 <Paper sx={{width: {sm: '100%', lg: '50%'}}}>
                     <List sx={{display:"flex", justifyContent: 'space-evenly'}}>
@@ -69,7 +69,7 @@ const Home = () => {
                                 <ListItem onClick={() => setEdit(true)} sx={{display:'flex', justifyContent:'center'}}>{lists[index]?.title}</ListItem>
                                 :
                                 <form style={{margin: 'auto 0 auto 0'}} onSubmit={(e) => handleClick(lists[index], e)}>
-                                    <input style={{width: '5rem'}} onKeyDown={(e) => {if(e.key === 'Escape'){setEdit(false)}}} onChange={(e) => setEditListForm({title: e.target.value})} placeholder={lists[index]?.title}/>
+                                    <input style={{width: '4rem'}} onKeyDown={(e) => {if(e.key === 'Escape'){setEdit(false)}}} onChange={(e) => setEditListForm({title: e.target.value})} maxLength={16} required placeholder={lists[index]?.title}/>
                                     <DeleteBtn setEdit={setEdit} list={lists[index]} user={user}/>
                                 </form>
                             }
@@ -78,64 +78,14 @@ const Home = () => {
                 </Paper>
                 <NewListForm setIndex={setIndex}/>
             </Paper>
-            <Paper sx={{height: '11rem', width: {md: '75%', sm: '100%', xs: '100%'}, margin: '1rem auto 0 auto'}}>
-                {/* {!edit? 
-                    <Box sx={{display: 'flex', width: 'fit-content', margin: '1rem auto 0 auto', alignItems: 'center'}}>
-                        <Typography>
-                            {lists[index]?.title}
-                        </Typography>
-                        <Button onClick={() => setEdit(true)}>/</Button>
-                        <DeleteBtn list={lists[index]} user={user}/>
-                    </Box>
-                    : 
-                    <Box sx={{display: 'flex', width: 'fit-content', margin: '1rem auto 0 auto'}}>
-                        <form onSubmit={(e) => handleClick(lists[index], e)}>
-                            <TextField onKeyDown={(e) => {if(e.key === 'Escape'){setEdit(false)}}} onChange={(e) => setEditListForm({title: e.target.value})} placeholder={lists[index].title}/>
-                        </form>
-                    </Box>
-                    } */}
-                    <Paper elevation={2} sx={{height: 'inherit', overflow: 'scroll'}}>
-                        <NewTaskForm index={index}/>
-                        <List sx={{overflow: 'scroll'}}>
-                            {lists[index]?.tasks.map(task => 
-                                    <Task key={task._id} index={index} task={task}/>
-                                )}
-                        </List>
-                    </Paper>
-            </Paper>
-            {/* <Paper sx={{display: 'flex', flexDirection: 'column', height: '100%', padding: '0.5rem 0.5rem 0 0.5rem'}}>
-                <Typography variant='h4' sx={{margin: '0 auto 0 auto'}}>Lists</Typography>
-                <NewListForm />
-                <List sx={{height: '100%', overflow:'scroll'}}>
-                    {lists.map(list => {
-                        return <ListItem key={list._id}>
-                                {!edit? 
-                                <Box>
-                                    <Typography sx={{"&:hover": {backgroundColor: 'grey', cursor: 'pointer'}}} onClick={() => setSelList(list)}>
-                                        {list.title}
-                                    </Typography>
-                                    <Button onClick={() => setEdit(true)}>/</Button><DeleteBtn list={list} user={user}/>
-                                </Box>
-                                : 
-                                <form onSubmit={(e) => handleClick(list, e)}>
-                                    <TextField onKeyDown={(e) => {if(e.key === 'Escape'){setEdit(false)}}} onChange={(e) => setEditListForm({title: e.target.value})} placeholder={list.title}/>
-                                </form>
-                                }
-                            </ListItem>
-                    })}
+            <Paper sx={{height: {md: '70%', sm: '40%', xs: '40%'}, width: {md: '75%', sm: '100%', xs: '100%'}, margin: '1rem auto 0 auto', paddingBottom: '2rem', overflow: 'hidden'}}>
+                <NewTaskForm index={index}/>
+                <List sx={{overflow: 'scroll', height: '85%'}}>
+                    {lists[index]?.tasks.map(task => 
+                            <Task key={task._id} index={index} task={task}/>
+                        )}
                 </List>
             </Paper>
-            <Paper sx={{height: '100%', padding: '0.5rem 0.5rem 0 0.5rem'}}>
-                <Typography variant='h4' sx={{margin: '0 auto 0 auto', width:'fit-content'}}>
-                    {selList?.title}
-                </Typography>
-                {selList && <NewTaskForm setSelList={setSelList} selList={selList}/>}
-                <List sx={{height: '75%', overflow:'scroll'}}>
-                    {selList?.tasks?.map(task => {
-                        return <Task key={task._id} setSelList={setSelList} selList={selList} task={task}/>
-                    })}
-                </List>
-            </Paper> */}
         </Container>
     )
 }

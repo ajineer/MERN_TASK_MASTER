@@ -29,7 +29,7 @@ const NewTaskForm = ({index}) => {
 
     return (
         <form style={{display: 'flex', margin: '1rem 0 0 1rem'}} onSubmit={(e) => handleSubmit(e)}>
-            <input onChange={(e) => setTaskForm({name: e.target.value})} placeholder="enter task"/>
+            <input onChange={(e) => setTaskForm({name: e.target.value})} required maxLength={20} placeholder="enter task"/>
             <button style={{width: 'fit-content'}} type="submit">+</button>
         </form>
     )
