@@ -5,7 +5,7 @@ import './index.css'
 import { AuthContextProvider } from './context/AuthContext'
 import App from './App'
 import { ListContextProvider } from './context/ListContext'
-import './index.css'
+
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
