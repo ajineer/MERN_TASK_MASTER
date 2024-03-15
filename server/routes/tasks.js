@@ -3,7 +3,7 @@ import {
   getTasks,
   deleteTask,
   updateTask,
-} from "../controllers/taskController";
+} from "../controllers/taskController.js";
 
 const router = Router();
 

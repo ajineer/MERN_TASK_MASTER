@@ -1,4 +1,5 @@
-import { express } from "express";
+import { Router } from "express";
+import requireAuth from "../middleware/requireAuth.js";
 import {
   getLists,
   getList,
@@ -6,11 +7,9 @@ import {
   createTask,
   deleteList,
   updateList,
-} from "../controllers/listController";
+} from "../controllers/listController.js";
 
-import requireAuth from "../middleware/requireAuth";
-
-const router = express.Router();
+const router = Router();
 
 // require Auth for all list routes
 router.use(requireAuth);

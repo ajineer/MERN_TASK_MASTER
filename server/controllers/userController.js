@@ -1,7 +1,7 @@
-import User from "../models/userModel";
-import { jwt } from "jsonwebtoken";
+import User from "../models/userModel.js";
+import jwt from "jsonwebtoken";
 
-export const createToken = (_id) => {
+const createToken = (_id) => {
   return jwt.sign({ _id }, process.env.SECRET, { expiresIn: "3d" });
 };
 

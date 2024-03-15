@@ -5,9 +5,9 @@ import dotenv from "dotenv";
 import path from "path";
 import cors from "cors";
 
-import listRoutes from "./routes/lists";
-import userRoutes from "./routes/users";
-import taskRoutes from "./routes/tasks";
+import listRoutes from "./routes/lists.js";
+import userRoutes from "./routes/users.js";
+import taskRoutes from "./routes/tasks.js";
 
 dotenv.config();
 

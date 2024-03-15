@@ -1,5 +1,5 @@
-import List from "../models/listModel";
-import Task from "../models/taskModel";
+import List from "../models/listModel.js";
+import Task from "../models/taskModel.js";
 import mongoose from "mongoose";
 
 export const getTasks = async (req, res) => {
