@@ -1,13 +1,17 @@
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const app = express();
-const listRoutes = require("./routes/lists");
-const userRoutes = require("./routes/users");
-const taskRoutes = require("./routes/tasks");
-const path = require("path");
+// const express = require("express");
+import express from "express";
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import path from "path";
+import cors from "cors";
 
+import listRoutes from "./routes/lists";
+import userRoutes from "./routes/users";
+import taskRoutes from "./routes/tasks";
+
+dotenv.config();
+
+const app = express();
 const corsOptions = {
   origin: "http://localhost:5173",
 };
