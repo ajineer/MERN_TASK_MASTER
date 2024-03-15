@@ -8,11 +8,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "dev": "nodemon server.js",
-    "install-server": "cd server && npm install",
-    "start-server": "cd server && node server.js",
-    "install-client": "cd client && npm install",
-    "build-client": "cd client && npm run build",
-    "start-client": "cd client && npm run start"
+    "install-server": "npm install",
+    "start-server": "node server.js",
+    "install-client": "cd ../client && npm install",
+    "build-client": "cd ../client && npm run build",
+    "start-client": "cd ../client && npm run start"
   },
   "keywords": [],
   "author": "",
