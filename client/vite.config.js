@@ -9,7 +9,7 @@ export default defineConfig({
     proxy: {
       "/api": {
         // target: "http://localhost:5555",
-        target: "https://mern-task-master-uaiz.onrender.com:5555/api/",
+        target: "https://mern-task-master-uaiz.onrender.com:5555",
         secure: false,
       },
     },
