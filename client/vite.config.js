@@ -11,6 +11,7 @@ export default defineConfig({
         //target:"https://localhost:5555"
         target: "https://mern-task-master-server.onrender.com",
         secure: false,
+        changeOrigin: true,
       },
     },
   },
