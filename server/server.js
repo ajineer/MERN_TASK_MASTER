@@ -14,7 +14,7 @@ dotenv.config();
 const app = express();
 const corsOptions = {
   // origin: "http://localhost:5173",
-  origin: "https://mern-task-master-client.netlify.app",
+  origin: "https://mern-task-master-client-5l5z.onrender.com",
   credentials: true,
 };
 
