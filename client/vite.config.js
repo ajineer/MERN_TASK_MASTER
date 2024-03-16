@@ -8,6 +8,7 @@ export default defineConfig({
     cors: true,
     proxy: {
       "/api": {
+        //target:"https://localhost:5555"
         target: "https://mern-task-master-server.onrender.com",
         secure: false,
       },
