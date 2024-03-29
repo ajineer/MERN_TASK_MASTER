@@ -20,7 +20,6 @@ const Home = () => {
     const {user} = useAuthContext()
     const [index, setIndex] = useState(0)
     const [edit, setEdit] = useState(false)
-    const [selList, setSelList] = useState(lists[0])
     const [editListForm, setEditListForm] = useState({
         title: ''
     })
@@ -36,7 +35,11 @@ const Home = () => {
         if(user){
             fetchLists()
         }
-    },[dispatch, user, lists[index]])
+    },[dispatch, user])
+
+    useEffect(() => {
+        setIndex(current => current)
+    },[lists[index]])
 
     const handleClick = async (list, e) => {
         e.preventDefault()
@@ -91,5 +94,3 @@ const Home = () => {
 }
 
 export default Home
-
-{/* <EditBtn list={list} user={user}/> */}

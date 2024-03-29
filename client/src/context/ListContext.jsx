@@ -16,8 +16,8 @@ export const ListReducer = (state, action) => {
       return {
         lists: state.lists.filter((l) => l._id !== action.payload._id)
       }
-    case 'UPDATE_LIST':
-      return {
+    case 'UPDATE_LIST': 
+    return {
         lists: state.lists.map((l) => {
           return l._id === action.payload._id ? action.payload : l
         })
@@ -31,7 +31,7 @@ export const ListContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(ListReducer, {
     lists: [],
   })
-
+  console.log("ListContext state: ", state)
   return (
     <ListContext.Provider value={{...state, dispatch}}>
       { children }

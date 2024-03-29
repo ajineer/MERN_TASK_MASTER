@@ -2,6 +2,7 @@
 .env
 node_modules
 .DS_Store
+logs
 
 # Local Netlify folder
 .netlify

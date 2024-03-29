@@ -1,26 +1,21 @@
-// const express = require("express");
-import express from "express";
-import mongoose from "mongoose";
 import dotenv from "dotenv";
-import path from "path";
+import express from "express";
+import { logger, logEvents } from "./middleware/logger.js";
 import cors from "cors";
-
+import { corsOptions } from "./config/corsOptions.js";
+import { connectDB } from "./config/dbConn.js";
+import mongoose from "mongoose";
 import listRoutes from "./routes/lists.js";
 import userRoutes from "./routes/users.js";
 import taskRoutes from "./routes/tasks.js";
 
 dotenv.config();
+connectDB();
 
 const app = express();
-const corsOptions = {
-  // origin: "http://localhost:5173",
-  origin: "https://mern-task-master-client-5l5z.onrender.com",
-  credentials: true,
-};
-
-app.use(express.json());
+app.use(logger);
 app.use(cors(corsOptions));
-
+app.use(express.json());
 app.use((req, res, next) => {
   next();
 });
@@ -29,25 +24,17 @@ app.use("/api/lists", listRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/tasks", taskRoutes);
 
-// hold absolute path of current working directory
-const __dirname = path.resolve();
-
-// tell express to serve static files from the '/client/dist
-app.use(express.static(path.join(__dirname, "/client/dist")));
-
-// respond to all get requests by sending the html file in /client/dist directory
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+mongoose.connection.once("open", () => {
+  console.log("Connected to MongoDB");
+  app.listen(process.env.PORT, () =>
+    console.log(`Server running on port ${process.env.PORT}`)
+  );
 });
 
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    console.log("connected");
-    app.listen(process.env.PORT, () => {
-      console.log("listening on port", process.env.PORT);
-    });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+mongoose.connection.on("error", (err) => {
+  console.log(err);
+  logEvents(
+    `${err.no}: ${err.code}\t${err.syscall}\t${err.hostname}`,
+    "mongoErrLog.log"
+  );
+});

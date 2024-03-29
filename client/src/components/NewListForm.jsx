@@ -7,7 +7,7 @@ import { useListContext } from "../hooks/useListContext"
 const NewListForm = ({setIndex}) => {
 
     const {user} = useAuthContext()
-    const { dispatch } = useListContext()
+    const { lists, dispatch } = useListContext()
     const [error, setError] = useState('')
     const [listForm, setListForm] = useState({
         title: ''
