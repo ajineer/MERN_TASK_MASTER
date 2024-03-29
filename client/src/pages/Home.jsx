@@ -47,6 +47,11 @@ const Home = () => {
         const json = await response.json()
         if(response.ok){
             dispatch({type:'UPDATE_LIST', payload: json})
+            const res = await fetchListReq(user)
+            const listJson = await res.json()
+            if(res.ok){
+                dispatch({type: "SET_LISTS", payload: listJson})
+            }
             setEdit(false)
         }else{
             console.log(json.error)
