@@ -1,14 +1,14 @@
 import { Box, Button, Checkbox, ListItem, Paper, TextField, Typography } from "@mui/material"
 import { deleteTaskReq, patchTaskReq } from "../routes/taskRoutes"
 import { useAuthContext } from "../hooks/useAuthContext"
-import { useListContext } from "../hooks/useListContext"
 import { useEffect, useState } from "react"
 import { green, red } from "../styles/colors"
+import { useTaskContext } from "../hooks/useTaskContext"
 
-const Task = ({index, task}) => {
+const Task = ({task}) => {
     
     const {user} = useAuthContext()
-    const {lists, dispatch} = useListContext()
+    const {tasks, dispatch} = useTaskContext()
     const [edit, setEdit] = useState(false)
     const [editTaskForm, setEditTaskForm] = useState({
         name: '',
@@ -23,10 +23,7 @@ const Task = ({index, task}) => {
         const response = await deleteTaskReq(task, user)
         const json = await response.json()
         if(response.ok){
-            //updatedList = { ...lists[index], tasks: lists[index].tasks.filter(t => t._id !== task._id)}
-            const updatedList = lists[index]
-            updatedList.tasks.filter(t => t._id !== task._id)
-            dispatch({type: 'UPDATE_LIST', payload: updatedList})
+            dispatch({type: "DELETE_TASK", payload: json})
         }
     }
 
@@ -35,12 +32,8 @@ const Task = ({index, task}) => {
         e.preventDefault()
         const response = await patchTaskReq(e, task, user)
         const json = await response.json()
-        lists[index].tasks?.map(t => {
-            return t._id === task._id ? json : t
-        })
         if(response.ok){
             setEditTaskForm({...json})
-            dispatch({type: 'UPDATE_LIST', payload: lists[index]})
             setEdit(false)
         }
     }

@@ -20,7 +20,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/lists", listRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/tasks", taskRoutes);
 

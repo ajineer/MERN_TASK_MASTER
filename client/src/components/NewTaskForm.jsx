@@ -1,25 +1,23 @@
 import { Button, TextField } from "@mui/material"
 import { useAuthContext } from "../hooks/useAuthContext"
-import { useListContext } from "../hooks/useListContext"
 import { useState } from "react"
-import { postTaskReq } from "../routes/listRoutes"
+import { postTaskReq } from "../routes/taskRoutes"
+import { useTaskContext } from "../hooks/useTaskContext"
 
 const NewTaskForm = ({index}) => {
 
     const {user} = useAuthContext()
-    const {lists, dispatch} = useListContext()
+    const {tasks, dispatch} = useTaskContext()
     const [taskForm, setTaskForm] = useState({
         name: ''
     })
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-
-        const response = await postTaskReq(lists[index], taskForm, user)
+        const response = await postTaskReq(user, taskForm)
         const json = await response.json()
         if(response.ok){
-            lists[index].tasks = [...lists[index].tasks, json]
-            dispatch({type: "UPDATE_LIST", payload: lists[index]})
+            dispatch({type: "CREATE_TASK", payload: json})
             e.target.reset()
         }else{
             console.log(json.error)

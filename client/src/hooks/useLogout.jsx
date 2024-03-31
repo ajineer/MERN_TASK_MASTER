@@ -1,10 +1,10 @@
 import { useAuthContext } from './useAuthContext'
-import { useListContext } from './useListContext'
+import { useTaskContext } from './useTaskContext'
 
 export const useLogout = () => {
 
     const { dispatch } = useAuthContext()
-    const { dispatch: listDispatch } = useListContext()
+    const { dispatch: taskDispatch } = useTaskContext()
 
     const logout = () => {
         // remove user from stoargae
@@ -12,7 +12,7 @@ export const useLogout = () => {
 
         // dispatch logout action
         dispatch({type: 'LOGOUT'})
-        listDispatch({type: 'SET_LISTS', payload: []})
+        taskDispatch({type: 'SET_TASKS', payload: []})
     }
 
     return { logout }

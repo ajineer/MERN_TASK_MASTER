@@ -3,11 +3,15 @@ import {
   getTasks,
   deleteTask,
   updateTask,
+  createTask,
 } from "../controllers/taskController.js";
+import requireAuth from "../middleware/requireAuth.js";
 
 const router = Router();
 
-router.get("/:id", getTasks);
+router.use(requireAuth);
+router.post("/", createTask);
+router.get("/", getTasks);
 router.patch("/:id", updateTask);
 router.delete("/:id", deleteTask);
 

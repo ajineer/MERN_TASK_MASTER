@@ -4,7 +4,6 @@ import {
   getLists,
   getList,
   createList,
-  createTask,
   deleteList,
   updateList,
 } from "../controllers/listController.js";
@@ -17,7 +16,6 @@ router.use(requireAuth);
 router.get("/", getLists);
 router.get("/:id", getList);
 router.post("/", createList);
-router.post("/:id", createTask);
 router.delete("/:id", deleteList);
 router.patch("/:id", updateList);
 

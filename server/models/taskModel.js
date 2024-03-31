@@ -3,6 +3,10 @@ import { Schema } from "mongoose";
 
 const taskSchema = new Schema(
   {
+    user_id: {
+      type: String,
+      required: true,
+    },
     name: {
       type: String,
       required: true,
@@ -10,10 +14,6 @@ const taskSchema = new Schema(
     status: {
       type: Boolean,
       required: true,
-    },
-    list: {
-      type: Schema.Types.ObjectId,
-      ref: "List",
     },
   },
   { timestamps: true }

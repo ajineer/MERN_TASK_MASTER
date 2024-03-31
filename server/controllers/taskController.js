@@ -1,18 +1,36 @@
-import List from "../models/listModel.js";
 import Task from "../models/taskModel.js";
 import mongoose from "mongoose";
 
-export const getTasks = async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "Invalid list ID" });
-  }
+// export const getTasks = async (req, res) => {
+//   const { id } = req.params;
+//   if (!mongoose.Types.ObjectId.isValid(id)) {
+//     return res.status(404).json({ error: "Invalid list ID" });
+//   }
+//   try {
+//     const tasks = await Task.find({ userId: id }).sort({ createAt: -1 });
+//     res.status(200).json(tasks);
+//   } catch (error) {
+//     res.status(500).json({ error: "Internal server Error" });
+//   }
+// };
+
+export const createTask = async (req, res) => {
+  const { name } = req.body;
+
   try {
-    const tasks = await Task.find({ listId: id }).sort({ createAt: -1 });
-    res.status(200).json(tasks);
+    const user_id = req.user._id;
+    const task = await Task.create({ name, user_id, status: false });
+    res.status(200).json(task);
   } catch (error) {
-    res.status(500).json({ error: "Internal server Error" });
+    res.status(400).json({ error: error.message });
   }
+};
+
+export const getTasks = async (req, res) => {
+  console.log("req.user: ", req.user);
+  const user_id = req.user._id;
+  const tasks = await Task.find({ user_id }).sort({ createdAt: -1 });
+  res.status(200).json(tasks);
 };
 
 export const updateTask = async (req, res) => {
@@ -51,14 +69,10 @@ export const deleteTask = async (req, res) => {
       return res.status(404).json({ error: "No such task" });
     }
 
-    const list = await List.findById(task.list);
-    list.tasks = list.tasks.filter((t) => t.toString() !== task._id.toString());
-    await list.save();
-
     await task.deleteOne({ _id: id });
 
     console.log("Task deleted successfully");
-    return res.status(200).json(list);
+    return res.status(200).json(task);
   } catch (error) {
     console.error("Error deleting task:", error);
     res.status(500).json({ error: "Internal server error" });

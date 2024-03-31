@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import User from "../models/userModel.js";
 
-const requrieAuth = async (req, res, next) => {
+const requireAuth = async (req, res, next) => {
   // verify authentication
   const { authorization } = req.headers;
 
@@ -12,7 +12,7 @@ const requrieAuth = async (req, res, next) => {
   const token = authorization.split(" ")[1];
 
   try {
-    const _id = jwt.verify(token, process.env.SECRET);
+    const { _id } = jwt.verify(token, process.env.SECRET);
 
     req.user = await User.findOne({ _id }).select("_id");
     next();
@@ -22,4 +22,4 @@ const requrieAuth = async (req, res, next) => {
   }
 };
 
-export default requrieAuth;
+export default requireAuth;
