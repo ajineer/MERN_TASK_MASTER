@@ -20,7 +20,7 @@ const NavBar = () => {
               {user?
               <Grid container spacing={2}>
                 <Grid item xs={12}>
-                    <Typography align="center" variant="h2" component="h2" sx={{borderTop:"2px solid black", borderBottom:'2px solid black', width:'fit-content', margin: '1rem auto 0 auto'}}>Task Master</Typography>
+                    <Typography align="center" variant="h2" component="h2" sx={{borderTop:"2px solid black", borderBottom:'2px solid black', width:'fit-content', fontSize: {xs: '2rem', md: '4rem'}, margin: '1rem auto 0 auto'}}>Task Master</Typography>
                 </Grid>
                 <Grid item xs={6} sx={{display:'flex', justifyContent:'center'}}>
                     <Link component={Button} href='/'>Home</Link>
