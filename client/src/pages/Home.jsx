@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '../hooks/useAuthContext'
-import { Box, Container, List, Paper, Typography } from '@mui/material'
+import { Box, Container, List, Paper, Typography, Accordion, AccordionDetails, AccordionSummary, Card } from '@mui/material'
 
 // components
 
@@ -33,24 +33,17 @@ const Home = () => {
     },[dispatch, user])
 
     return (
-        <Container>
-            <Calendar initialValue={initialValue}/>
-            {/* <Container sx={{display: 'flex', flexDirection: 'column', height: '85%'}}> */}
-                {/* <Box sx={{backgroundColor: 'white', padding: '2px'}}>
-                    <Typography sx={{backgroundColor: primary}}>Primary</Typography>
-                    <Typography sx={{backgroundColor: secondary}}>Secondary</Typography>
-                    <Typography sx={{backgroundColor: accent1}}>Accent1</Typography>
-                </Box> */}
-            {/* </Container> */}
-            <Paper sx={{height: {md: '70%', sm: '40%', xs: '40%'}, width: {md: '75%', sm: '100%', xs: '100%'}, margin: '1rem auto 0 auto', paddingBottom: '2rem', overflow: 'hidden'}}>
-                <NewTaskForm />
-                <List sx={{overflow: 'scroll', height: '85%'}}>
-                {tasks?.map(task => 
-                    <Task key={task._id} task={task}/>
-                    )}
-                    </List>
-            </Paper>
-        </Container>
+        <Calendar/>
+        // <Container>
+        //     <Calendar/>
+        // </Container>
+        // <Container sx={{display: 'flex', flexDirection: 'column', height: '85%'}}> */}
+        //     <Box sx={{backgroundColor: 'white', padding: '2px'}}>
+        //         <Typography sx={{backgroundColor: primary}}>Primary</Typography>
+        //         <Typography sx={{backgroundColor: secondary}}>Secondary</Typography>
+        //         <Typography sx={{backgroundColor: accent1}}>Accent1</Typography>
+        //     </Box>
+        // </Container>
     )
 }
 

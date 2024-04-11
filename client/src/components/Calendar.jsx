@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { primary } from '../styles/colors';
 import dayjs from 'dayjs';
 import Badge from '@mui/material/Badge';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
@@ -7,10 +8,12 @@ import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 import { useTaskContext } from '../hooks/useTaskContext';
+import { Accordion, AccordionDetails, AccordionSummary, Card, Paper} from "@mui/material"
+import Tasks from './Tasks.jsx'
 
 
-export default function DateCalendarServerRequest({initialValue}) {
-    // const initialValue = dayjs(new Date())
+export default function DateCalendarServerRequest() {
+    const initialValue = dayjs(new Date())
     /**
      * Mimic fetch with abort controller https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort
      * ⚠️ No IE11 support
@@ -105,23 +108,33 @@ export default function DateCalendarServerRequest({initialValue}) {
     };
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <DateCalendar
-            defaultValue={initialValue}
-            loading={isLoading}
-            onMonthChange={handleMonthChange}
-            onYearChange={handleYearChange}
-            renderLoading={() => <DayCalendarSkeleton />}
-            // customize the rendering of different parts of the calendar such as day, week, month, etc...
-            slots={{
-            day: ServerDay,
-            }}
-            slotProps={{
-            day: {
-                highlightedDays,
-            },
-            }}
-        />
-        </LocalizationProvider>
+        <Card>
+            <Accordion sx={{backgroundColor: primary}}>
+                    <AccordionSummary>
+                        Calendar
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        <LocalizationProvider dateAdapter={AdapterDayjs}>
+                            <DateCalendar
+                                defaultValue={initialValue}
+                                loading={isLoading}
+                                onMonthChange={handleMonthChange}
+                                onYearChange={handleYearChange}
+                                renderLoading={() => <DayCalendarSkeleton />}
+                                // customize the rendering of different parts of the calendar such as day, week, month, etc...
+                                slots={{
+                                    day: ServerDay,
+                                }}
+                                slotProps={{
+                                    day: {
+                                        highlightedDays,
+                                    },
+                                }}
+                                />
+                        </LocalizationProvider>
+                </AccordionDetails>
+            </Accordion>
+            <Tasks initialValue={initialValue}/>
+        </Card>
     );
 }

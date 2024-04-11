@@ -5,7 +5,6 @@ import cors from "cors";
 import { corsOptions } from "./config/corsOptions.js";
 import { connectDB } from "./config/dbConn.js";
 import mongoose from "mongoose";
-import listRoutes from "./routes/lists.js";
 import userRoutes from "./routes/users.js";
 import taskRoutes from "./routes/tasks.js";
 
