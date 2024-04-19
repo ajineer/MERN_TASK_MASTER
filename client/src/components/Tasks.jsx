@@ -1,23 +1,31 @@
 import { useTaskContext } from "../hooks/useTaskContext"
 import NewTaskForm from "./NewTaskForm"
 import Task from "./Task"
-import { List, Paper } from '@mui/material'
+import { List, Paper, Typography, Card, Container } from '@mui/material'
 
-const Tasks = () => {
+const Tasks = ({currentDate}) => {
 
   const {tasks, dispatch} = useTaskContext()
 
   return (
     
-    <Paper sx={{height: {md: '70%', sm: '40%', xs: '40%'}, width: {md: '75%', sm: '100%', xs: '100%'}, margin: '1rem auto 0 auto', paddingBottom: '2rem', overflow: 'hidden'}}>
-      
-        <NewTaskForm />
-        <List sx={{overflow: 'scroll', height: '85%'}}>
-        {tasks?.map(task => 
-            <Task key={task._id} task={task}/>
+    <Container>
+      <Card>
+          <Typography 
+            element='h4' 
+            variant='h4'
+            sx={{ width: 'fit-content', marginLeft: 'auto', marginRight: 'auto', marginTop: '1rem', border: '2px solid black'}}  
+          >
+            {currentDate.format('MMMM-DD-YYYY')}
+          </Typography>
+          <NewTaskForm />
+          <List sx={{overflow: 'scroll', height: '85%'}}>
+          {tasks?.map(task => 
+              <Task key={task._id} task={task}/>
             )}
-            </List>
-    </Paper>
+              </List>
+      </Card>
+    </Container>
     )
 }
 export default Tasks

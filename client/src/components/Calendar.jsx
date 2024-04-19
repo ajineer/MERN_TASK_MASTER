@@ -8,7 +8,8 @@ import { PickersDay } from '@mui/x-date-pickers/PickersDay';
 import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 import { DayCalendarSkeleton } from '@mui/x-date-pickers/DayCalendarSkeleton';
 import { useTaskContext } from '../hooks/useTaskContext';
-import { Accordion, AccordionDetails, AccordionSummary, Card, Paper} from "@mui/material"
+import { Card, Accordion, AccordionSummary, AccordionDetails, Typography } from "@mui/material"
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Tasks from './Tasks.jsx'
 
 
@@ -58,6 +59,7 @@ export default function DateCalendarServerRequest() {
     const requestAbortController = useRef(null);
     const [isLoading, setIsLoading] = useState(false);
     const [highlightedDays, setHighlightedDays] = useState([]);
+    const [currentDate, setCurrentDate] = useState(initialValue)
 
     const fetchHighlightedDays = (date) => {
         const controller = new AbortController();
@@ -108,33 +110,39 @@ export default function DateCalendarServerRequest() {
     };
 
     return (
-        <Card>
-            <Accordion sx={{backgroundColor: primary}}>
-                    <AccordionSummary>
+        <Card sx={{display: 'block', height: '99%'}}>
+            <Accordion sx={{backgroundColor: '#A88D6D'}}>
+                <AccordionSummary
+                    expandIcon={<ArrowDropDownIcon/>}
+                >
+                    <Typography sx={{marginLeft: 'auto', marginRight: 'auto'}}>
                         Calendar
-                    </AccordionSummary>
-                    <AccordionDetails>
-                        <LocalizationProvider dateAdapter={AdapterDayjs}>
-                            <DateCalendar
-                                defaultValue={initialValue}
-                                loading={isLoading}
-                                onMonthChange={handleMonthChange}
-                                onYearChange={handleYearChange}
-                                renderLoading={() => <DayCalendarSkeleton />}
-                                // customize the rendering of different parts of the calendar such as day, week, month, etc...
-                                slots={{
-                                    day: ServerDay,
-                                }}
-                                slotProps={{
-                                    day: {
-                                        highlightedDays,
-                                    },
-                                }}
-                                />
-                        </LocalizationProvider>
+                    </Typography>
+                </AccordionSummary>
+                <AccordionDetails sx={{display: 'flex', justifyContent: 'center'}}>
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                        <DateCalendar
+                            sx={{minWidth: { xs: '100%', sm: '80%', md: '60%'}, scale: {xs: '0.8', sm: '0.8', md: '0.9', lg: '1.0', xl: '1.0'}, overflow: 'hidden'}}
+                            defaultValue={initialValue}
+                            loading={isLoading}
+                            onMonthChange={handleMonthChange}
+                            onYearChange={handleYearChange}
+                            onChange={(e) => setCurrentDate(dayjs(e.$d))}
+                            renderLoading={() => <DayCalendarSkeleton />}
+                            // customize the rendering of different parts of the calendar such as day, week, month, etc...
+                            slots={{
+                                day: ServerDay,
+                            }}
+                            slotProps={{
+                                day: {
+                                    highlightedDays,
+                                },
+                            }}
+                            />
+                    </LocalizationProvider>
                 </AccordionDetails>
             </Accordion>
-            <Tasks initialValue={initialValue}/>
+            <Tasks currentDate={currentDate}/>
         </Card>
     );
 }
