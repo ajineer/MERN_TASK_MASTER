@@ -3,6 +3,7 @@ import { useTaskContext } from "../../hooks/useTaskContext"
 import { eachDayOfInterval, endOfMonth, format, getDay, isToday, startOfMonth, addMonths, subMonths, subDays, addDays } from 'date-fns'
 import './Calendar.css'
 import { primary } from "../../styles/colors"
+import Tasks from '../Tasks/Tasks'
 
 const Calendar = () => {
     const WEEKDAYS = ['Sun', 'Mon', 'Tue', "Wed", "Thu", "Fri", "Sat"]
@@ -63,8 +64,7 @@ const Calendar = () => {
                             display: 'flex',
                             fontSize:"1.5rem",
                             alignItems: 'center',
-                            border: '2px solid red'
-                            
+                            border: '2px solid red',
                         }}
                     >
                         {collapsed ? <i>{'\u002B'}</i> : <i>{'\u2212'}</i>}
@@ -122,6 +122,7 @@ const Calendar = () => {
                         })}
                     </div>
                 </div>
+                <Tasks currentDate={currentDate}/>
         </section>
   )
 }
