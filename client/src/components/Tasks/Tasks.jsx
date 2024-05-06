@@ -1,7 +1,7 @@
 import { format } from "date-fns"
 import { useTaskContext } from "../../hooks/useTaskContext"
 import { useMemo } from "react"
-import { Task } from '../Task'
+import Task from '../Task/Task'
 import NewTaskForm from "../NewTaskForm/NewTaskForm"
 
 
@@ -10,21 +10,21 @@ const Tasks = ({currentDate}) => {
   const {tasks, dispatch} = useTaskContext()
   const filteredTasks = useMemo(() => {
     return tasks.filter(task => 
-        task.date === currentDate? task : ''
+        task.date === format(currentDate, 'MMMM/dd/yyyy') && task
     )
   },[currentDate, tasks])
 
   return (
     <section>
-        <div>
-            <h4>{format(currentDate.getDay(), 'EEEE')}, {format(currentDate, "MMMM-dd-yyyy")}</h4>
-        </div>
+        {/* <div>
+            <h4>{format(currentDate.getDay(), 'EEEE')}, {format(currentDate, "MMMM/dd/yyyy")}</h4>
+        </div> */}
         <NewTaskForm currentDate={currentDate}/>
-        <ui>
+        <ul>
             {filteredTasks.map(task => {
-                return <Task/>
+                return <Task task={task}/>
             })}
-        </ui>
+        </ul>
     </section>
   )
 }

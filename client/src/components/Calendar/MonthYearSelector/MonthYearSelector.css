@@ -1,0 +1,15 @@
+.month_year_selectors {
+    display: flex;
+    border: 2px solid yellow;
+    margin: 0 auto 0 auto;
+    box-sizing: border-box;
+}
+.month_selector {
+    display: flex;
+    align-items: center;
+}
+.year_selector select{
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    margin: auto 0 auto 0;
+}

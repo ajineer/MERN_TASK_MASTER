@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '../../hooks/useAuthContext'
-import { Box, Container, List, Paper, Typography, Accordion, AccordionDetails, AccordionSummary, Card } from '@mui/material'
 
 // components
 
@@ -10,13 +9,11 @@ import NewTaskForm from '../../components/NewTaskForm'
 import { accent1, primary, secondary } from '../../styles/colors';
 import { useTaskContext } from '../../hooks/useTaskContext';
 import { fetchTasksReq } from '../../routes/taskRoutes';
-import Calendar from '../../components/Calendar/Calendar'
-import dayjs from 'dayjs'
+import Calendar from '../../components/Calendar/CalendarContainer/Calendar'
 
 const Home = () => {
     const {tasks, dispatch} = useTaskContext()
     const {user} = useAuthContext()
-    const initialValue = dayjs(new Date())
 
     useEffect(() => {
         const fetchTasks = async () => {

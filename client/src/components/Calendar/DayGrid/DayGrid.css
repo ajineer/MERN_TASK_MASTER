@@ -1,0 +1,5 @@
+.day_grid {
+    display: grid; 
+    grid-template-columns: repeat(7, minmax(1rem, 1fr));
+    gap: 2;
+}

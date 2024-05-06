@@ -15,11 +15,11 @@ import mongoose from "mongoose";
 // };
 
 export const createTask = async (req, res) => {
-  const { name } = req.body;
+  const { name, date } = req.body;
 
   try {
     const user_id = req.user._id;
-    const task = await Task.create({ name, user_id, status: false });
+    const task = await Task.create({ name, user_id, status: false, date });
     res.status(200).json(task);
   } catch (error) {
     res.status(400).json({ error: error.message });

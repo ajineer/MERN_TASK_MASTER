@@ -31,7 +31,6 @@ export const TaskContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(TaskReducer, {
     tasks: [],
   })
-  console.log("TaskContext state: ", state)
   return (
     <TaskContext.Provider value={{...state, dispatch}}>
       { children }
