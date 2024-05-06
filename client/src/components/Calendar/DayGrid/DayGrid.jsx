@@ -32,7 +32,7 @@ const DayGrid = ({currentDate, setCurrentDate}) => {
     <div className="day_grid">
         {WEEKDAYS.map((day) => {
             return (
-                <div key={day}>
+                <div className='week-day' key={day}>
                     {day}
                 </div>
             )

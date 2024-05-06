@@ -1,11 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useAuthContext } from '../../hooks/useAuthContext'
-
-// components
-
-// routes
-import Task from '../../components/Task'
-import NewTaskForm from '../../components/NewTaskForm'
 import { accent1, primary, secondary } from '../../styles/colors';
 import { useTaskContext } from '../../hooks/useTaskContext';
 import { fetchTasksReq } from '../../routes/taskRoutes';

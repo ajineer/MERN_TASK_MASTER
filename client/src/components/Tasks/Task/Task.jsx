@@ -1,7 +1,7 @@
-import { deleteTaskReq, patchTaskReq } from "../../routes/taskRoutes"
-import { useAuthContext } from "../../hooks/useAuthContext"
+import { useAuthContext } from "../../../hooks/useAuthContext"
 import { useEffect, useState } from "react"
-import { useTaskContext } from "../../hooks/useTaskContext"
+import { useTaskContext } from "../../../hooks/useTaskContext"
+import { deleteTaskReq, patchTaskReq } from "../../../routes/taskRoutes"
 
 const Task = ({task}) => {
 

@@ -1,3 +1,16 @@
+.calendar-container {
+  background-color: white;
+}
+
+.collapse-button {
+  border: none;
+  background-color: inherit;
+  padding: 1rem;
+  i {
+    font-size: 1.25rem;
+  }
+}
+
 .expander{
     display: grid;
     grid-template-rows: 0fr;

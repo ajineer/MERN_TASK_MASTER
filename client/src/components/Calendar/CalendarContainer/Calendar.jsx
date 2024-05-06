@@ -1,7 +1,7 @@
 import { useState } from "react"
 import './Calendar.css'
 import { primary } from "../../../styles/colors"
-import Tasks from '../../Tasks/Tasks'
+import Tasks from "../../Tasks/Tasks"
 import DayGrid from "../DayGrid/DayGrid"
 import MonthYearSelector from "../MonthYearSelector/MonthYearSelector"
 
@@ -25,32 +25,30 @@ const Calendar = () => {
         //     </div>
         // </div>
         
-        <section>
+        <section className="calendar-container">
             <div
-                onClick={() => setCollapsed(prev => !prev)}
                 style={{
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
+                    backgroundColor: primary,
                 }}
             >
-                <span>
-                    Calendar
-                </span>
+                <MonthYearSelector currentDate={currentDate} setCurrentDate={setCurrentDate}/>
                 <span
                     style={{
                         display: 'flex',
                         fontSize:"1.5rem",
                         alignItems: 'center',
-                        border: '2px solid red',
                     }}
                 >
-                    {!collapsed ? <i>{'\u002B'}</i> : <i>{'\u2212'}</i>}
+                    <button className='collapse-button' onClick={() => setCollapsed(prev => !prev)}>
+                        {collapsed ? <i>{'\u002B'}</i> : <i>{'\u2212'}</i>}
+                    </button>
                 </span>
             </div>
-            <div className={`expander ${collapsed && 'expanded'}`}>
+            <div className={`expander ${!collapsed && 'expanded'}`}>
                 <div className="expanded-content">
-                    <MonthYearSelector currentDate={currentDate} setCurrentDate={setCurrentDate}/>
                     <DayGrid currentDate={currentDate} setCurrentDate={setCurrentDate} />
                 </div>
             </div>

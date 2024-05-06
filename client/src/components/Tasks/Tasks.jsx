@@ -1,8 +1,9 @@
 import { format } from "date-fns"
 import { useTaskContext } from "../../hooks/useTaskContext"
 import { useMemo } from "react"
-import Task from '../Task/Task'
-import NewTaskForm from "../NewTaskForm/NewTaskForm"
+import Task from "./Task/Task"
+import NewTaskForm from "./NewTaskForm/NewTaskForm"
+import './Tasks.css'
 
 
 const Tasks = ({currentDate}) => {
@@ -15,10 +16,7 @@ const Tasks = ({currentDate}) => {
   },[currentDate, tasks])
 
   return (
-    <section>
-        {/* <div>
-            <h4>{format(currentDate.getDay(), 'EEEE')}, {format(currentDate, "MMMM/dd/yyyy")}</h4>
-        </div> */}
+    <section className="tasks-container">
         <NewTaskForm currentDate={currentDate}/>
         <ul>
             {filteredTasks.map(task => {

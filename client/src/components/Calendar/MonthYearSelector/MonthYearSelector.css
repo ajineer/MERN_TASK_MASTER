@@ -1,14 +1,23 @@
 .month_year_selectors {
     display: flex;
-    border: 2px solid yellow;
+    width: fit-content;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem 0;
     margin: 0 auto 0 auto;
     box-sizing: border-box;
 }
 .month_selector {
     display: flex;
+    justify-content: space-evenly;
     align-items: center;
+    margin-right: 1rem;
+    span{
+        margin: 0 0.5rem;
+    }
 }
 .year_selector select{
+    font-size: 1.125rem;
     background-color: rgba(0, 0, 0, 0);
     border: none;
     margin: auto 0 auto 0;

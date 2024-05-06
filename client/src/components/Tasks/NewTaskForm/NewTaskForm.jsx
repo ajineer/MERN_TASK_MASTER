@@ -1,15 +1,20 @@
-import { Button, TextField } from "@mui/material"
-import { useAuthContext } from "../hooks/useAuthContext"
+import { useAuthContext } from "../../../hooks/useAuthContext"
 import { useState } from "react"
-import { postTaskReq } from "../routes/taskRoutes"
-import { useTaskContext } from "../hooks/useTaskContext"
+import { postTaskReq } from "../../../routes/taskRoutes"
+import { useTaskContext } from "../../../hooks/useTaskContext"
+import { format } from "date-fns"
 
-const NewTaskForm = ({index}) => {
+const NewTaskForm = ({currentDate}) => {
+
+    // const updateDate = useMemo(() => {},[currentDate])
 
     const {user} = useAuthContext()
     const {tasks, dispatch} = useTaskContext()
     const [taskForm, setTaskForm] = useState({
-        name: ''
+        name: '',
+        status: false,
+        date: ''
+
     })
 
     const handleSubmit = async (e) => {
@@ -27,7 +32,14 @@ const NewTaskForm = ({index}) => {
 
     return (
         <form style={{display: 'flex', margin: '1rem 0 0 1rem'}} onSubmit={(e) => handleSubmit(e)}>
-            <input onChange={(e) => setTaskForm({name: e.target.value})} required maxLength={20} placeholder="enter task"/>
+            <input onChange={(e) => setTaskForm({
+                name: e.target.value,
+                status: taskForm.status,
+                date: format(currentDate, 'yyyy/MM/dd')
+                })} 
+                required 
+                maxLength={20} 
+                placeholder="enter task"/>
             <button style={{width: 'fit-content'}} type="submit">+</button>
         </form>
     )

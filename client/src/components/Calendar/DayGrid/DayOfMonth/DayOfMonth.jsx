@@ -11,10 +11,12 @@ const DayOfMonth = ({dateKey, index, currentDate, setCurrentDate, day, taskByDat
         }}
         onClick={() => {setCurrentDate(day)}}
     >
-        <span className="day_of_month_content">
-            {format(day, 'd')}   
-            {taskByDate[dateKey] && <i style={{color: 'red'}}>{'\u2739'}</i>}
-        </span>
+        <div className="day_of_month_content">
+            <span className={taskByDate[dateKey] && 'highlight-day'}>
+              {format(day, 'd')}   
+            </span>
+            {/* {taskByDate[dateKey] && <i style={{color: 'red'}}>{'\u2739'}</i>} */}
+        </div>
     </div>
   )
 }
