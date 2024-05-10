@@ -11,7 +11,7 @@ const Tasks = ({currentDate}) => {
   const {tasks, dispatch} = useTaskContext()
   const filteredTasks = useMemo(() => {
     return tasks.filter(task => 
-        task.date === format(currentDate, 'MMMM/dd/yyyy') && task
+        task.date === format(currentDate, 'yyyy/MM/dd') && task
     )
   },[currentDate, tasks])
 
@@ -19,8 +19,8 @@ const Tasks = ({currentDate}) => {
     <section className="tasks-container">
         <NewTaskForm currentDate={currentDate}/>
         <ul>
-            {filteredTasks.map(task => {
-                return <Task task={task}/>
+            {filteredTasks.map((task, index) => {
+                return <Task key={`${task.name}_${index}`}task={task}/>
             })}
         </ul>
     </section>

@@ -32,7 +32,7 @@ export const deleteTaskReq = async (task, user) => {
   return response;
 };
 
-export const patchTaskReq = async (e, task, user) => {
+export const patchTaskReq = async (task, editTaskForm, user) => {
   const response = await fetch(`/api/tasks/${task._id}`, {
     method: "PATCH",
     headers: {
@@ -40,8 +40,9 @@ export const patchTaskReq = async (e, task, user) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      name: e.target.name.value,
-      status: e.target.checked,
+      name: editTaskForm.name,
+      date: editTaskForm.date,
+      status: editTaskForm.status,
     }),
   });
 
