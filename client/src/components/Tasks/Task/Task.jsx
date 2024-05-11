@@ -5,17 +5,14 @@ import { deleteTaskReq, patchTaskReq } from "../../../routes/taskRoutes"
 import './Task.css'
 import { green, red } from "../../../styles/colors"
 
-const Task = ({task}) => {
+const Task = ({task, currentDate}) => {
 
   const {user} = useAuthContext()
   const {tasks, dispatch} = useTaskContext()
   const [edit, setEdit] = useState(false)
-  const [editTaskForm, setEditTaskForm] = useState({...task})
+  const [editTaskForm, setEditTaskForm] = useState(task)
 
-  const updateTaskState = useMemo(() => {
-    setEditTaskForm({...task})
-  },[task])
-
+  
   const handleDelete = async (e) => {
     const response = await deleteTaskReq(task, user)
     const json = await response.json()
@@ -27,22 +24,22 @@ const Task = ({task}) => {
   const handleToggle = () => {
     setEditTaskForm(prev => ({...prev, status: !prev.status}))
   }
-
+  
   const handleEdit = async (e) => {
-
+    
     e.preventDefault()
-    const response = await patchTaskReq(task, editTaskForm, user)
+    const response = await patchTaskReq(editTaskForm, user)
     const json = await response.json()
     if(response.ok){
-      setEditTaskForm({...json})
       setEdit(false)
+      dispatch({type: 'UPDATE_TASK', payload: json})
     }
   }
   
   return (
     <li 
-      className='task-container'
-      style={{
+    className='task-container'
+    style={{
         border: editTaskForm.status ? `2px solid ${green}` : `2px solid ${red}`,
       }}  
     >
@@ -84,28 +81,28 @@ const Task = ({task}) => {
         </form>
 
         {/*second child of task-details */}
-        <span
+        <h5
           style={{
             textDecoration: `${editTaskForm.status ? 'line-through' : ''}`
           }}
           >
           {editTaskForm.name}
-        </span>
+        </h5>
 
         {/*third child of task-details */}
-        <button
-          className="setEdit-button"
-          onClick={() => setEdit(true)}
-          >{'\u270E'}
-        </button>
+        <div className='task-buttons'>
+          <button
+            onClick={() => setEdit(true)}
+            >{'\u270E'}
+          </button>
 
-        {/*fourth child of task-details */}
-        <button 
-          className="delete-button"
-          onClick={(e) => handleDelete(e)}
-          >
-          X
-        </button>
+          {/*fourth child of task-details */}
+          <button 
+            onClick={(e) => handleDelete(e)}
+            >
+            X
+          </button>
+        </div>
       </div>
     </li>
   )

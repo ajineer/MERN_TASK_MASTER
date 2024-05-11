@@ -18,8 +18,8 @@ export const TaskReducer = (state, action) => {
       }
     case 'UPDATE_TASK': 
     return {
-        tasks: state.Tasks.map((l) => {
-          return l._id === action.payload._id ? action.payload : l
+        tasks: state.tasks.map((t) => {
+          return t._id === action.payload._id ? action.payload : t
         })
       }
     default:

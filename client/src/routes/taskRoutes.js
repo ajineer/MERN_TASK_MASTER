@@ -32,8 +32,8 @@ export const deleteTaskReq = async (task, user) => {
   return response;
 };
 
-export const patchTaskReq = async (task, editTaskForm, user) => {
-  const response = await fetch(`/api/tasks/${task._id}`, {
+export const patchTaskReq = async (editTaskForm, user) => {
+  const response = await fetch(`/api/tasks/${editTaskForm._id}`, {
     method: "PATCH",
     headers: {
       Authorization: `Bearer ${user.token}`,

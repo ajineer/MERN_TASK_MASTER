@@ -3,6 +3,7 @@ import { useState } from "react"
 import { postTaskReq } from "../../../routes/taskRoutes"
 import { useTaskContext } from "../../../hooks/useTaskContext"
 import { format } from "date-fns"
+import './NewTaskForm.css'
 
 const NewTaskForm = ({currentDate}) => {
 
@@ -27,11 +28,13 @@ const NewTaskForm = ({currentDate}) => {
         }else{
             console.log(json.error)
         }
-
     }
 
     return (
-        <form style={{display: 'flex', margin: '1rem 0 0 1rem'}} onSubmit={(e) => handleSubmit(e)}>
+        <form
+            className='new-task-form'
+            onSubmit={(e) => handleSubmit(e)}
+        >
             <input onChange={(e) => setTaskForm({
                 name: e.target.value,
                 status: taskForm.status,

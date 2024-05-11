@@ -4,6 +4,7 @@ import { accent1, primary, secondary } from '../../styles/colors';
 import { useTaskContext } from '../../hooks/useTaskContext';
 import { fetchTasksReq } from '../../routes/taskRoutes';
 import Calendar from '../../components/Calendar/CalendarContainer/Calendar'
+import './Home.css'
 
 const Home = () => {
     const {tasks, dispatch} = useTaskContext()
@@ -24,17 +25,9 @@ const Home = () => {
     },[dispatch, user])
 
     return (
-        <Calendar/>
-        // <Container>
-        //     <Calendar/>
-        // </Container>
-        // <Container sx={{display: 'flex', flexDirection: 'column', height: '85%'}}> */}
-        //     <Box sx={{backgroundColor: 'white', padding: '2px'}}>
-        //         <Typography sx={{backgroundColor: primary}}>Primary</Typography>
-        //         <Typography sx={{backgroundColor: secondary}}>Secondary</Typography>
-        //         <Typography sx={{backgroundColor: accent1}}>Accent1</Typography>
-        //     </Box>
-        // </Container>
+        <section className="homepage-container">
+            <Calendar/>
+        </section>
     )
 }
 

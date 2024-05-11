@@ -1,6 +1,6 @@
 .day_grid {
     display: grid; 
-    grid-template-columns: repeat(7, minmax(1rem, 1fr));
+    grid-template-columns: repeat(7, 2.5rem);
     gap: 2;
 }
 

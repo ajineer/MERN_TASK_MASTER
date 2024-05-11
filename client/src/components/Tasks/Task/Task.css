@@ -3,14 +3,15 @@
     justify-content: space-between;
     align-items: center;
     border: 2px solid grey;
-    width: 50%;
+    width: 95%;
     height: 2rem;
+    margin-bottom: 1rem;
 }
 
 .edit-task {
     background-color: white;
     height: 50%;
-    width: 50%;
+    width: 75%;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -18,6 +19,7 @@
     display: flex;
     flex-direction: column;
     z-index: 1;    
+    border: 2px solid #A88D6D;
 }
 .exit-edit {
     width: fit-content
@@ -27,20 +29,14 @@
 }
 
 .task-details {
-    height: inherit;
+    height: 100%;
     width: 100%;
     display: grid;
-    grid-template-columns: 2rem auto 2rem 2rem;
+    grid-template-columns: 2rem auto 2rem;
     grid-template-rows: 100%;
     align-items: center;
-    /* border: 2px solid purple; */
+    border: 2px solid purple;
 }
-
-.task-details * {
-    /* border: 2px solid red; */
-    width: 100%;
-}
-
 
 .check-box-form {
     display: flex;
@@ -49,6 +45,7 @@
     padding: 0.75rem;
     max-width: 1rem;
     max-height: 1rem;
+    border: 2px solid yellow;
     .check-box {
         border-radius: 10rem;
         width: 1.5rem;
@@ -60,12 +57,20 @@
     }
 }
 
-.task-details span {
+.task-details h5 {
     display: flex;
-    width: calc(100% - 6rem);
+    height: 100%;
     background-color: inherit;
     align-items: center;
-    justify-content: center;
-    font-size: 1rem;
+    justify-content: start;
+    font-size: max(1rem);
+    padding: 0 1rem;
+}
 
+.task-buttons {
+    display: flex;
+    height: 100%;
+    width: fit-content;
+    border: 2px solid green;
+    overflow: hidden;
 }

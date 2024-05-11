@@ -7,20 +7,14 @@
 
 .day_of_month_content {
     display: flex;
-    justify-content: flex-start;
-    margin-left: 0.5rem;
-    width: 100%;
-    height: 2rem;
+    flex-direction: column;
+    justify-content: center;
     font-size: minmax(0.25rem, 1rem);
-    i{
-        justify-self: center;
-        align-self: center;
-    }
     .highlight-day {
-        width: fit-content;
-        height: fit-content;
+        display: flex;
+        align-items: center;
         border-radius: 5rem;
         padding: 0.05rem;
-        background-color: red;
+        color: orange;
     }
 }

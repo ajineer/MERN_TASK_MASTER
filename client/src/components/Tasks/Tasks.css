@@ -1,7 +1,10 @@
 .tasks-container {
-    height: fit-content;
-    margin: 0;
-    padding: 0;
+    margin: 0 0 0 0;
+    padding: 2rem;
     border: 2px solid orange;
-    
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+
 }
