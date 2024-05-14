@@ -1,4 +1,6 @@
 .calendar-container {
+  height: fit-content;
+  border: 2px solid red;
   background-color: white;
 }
 

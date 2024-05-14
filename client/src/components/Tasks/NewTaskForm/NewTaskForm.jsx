@@ -32,18 +32,24 @@ const NewTaskForm = ({currentDate}) => {
 
     return (
         <form
-            className='new-task-form'
+            className='newTask form-container'
             onSubmit={(e) => handleSubmit(e)}
         >
-            <input onChange={(e) => setTaskForm({
-                name: e.target.value,
-                status: taskForm.status,
-                date: format(currentDate, 'yyyy/MM/dd')
-                })} 
-                required 
-                maxLength={20} 
-                placeholder="enter task"/>
-            <button style={{width: 'fit-content'}} type="submit">+</button>
+            <div className="form-group">
+                <input 
+                    className='form-input'    
+                    onChange={(e) => setTaskForm({
+                        name: e.target.value,
+                        status: taskForm.status,
+                        date: format(currentDate, 'yyyy/MM/dd')
+                    })} 
+                    required 
+                    maxLength={20} 
+                    placeholder=""
+                />  
+                <label className="form-label" htmlFor="floatingInput">Enter new task</label>
+            </div>
+            <input className="form-button" type="submit" value='+'/>
         </form>
     )
 }

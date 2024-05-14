@@ -1,10 +1,27 @@
-.tasks-container {
-    margin: 0 0 0 0;
-    padding: 2rem;
+.tasks-taskform {
     border: 2px solid orange;
+    background-color: white;
+    padding: 0 1rem;
+    flex: 1;
+    max-height: 62%;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: space-evenly;
+}
 
+.tasks-container {
+    display: flex;
+    height: auto;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: scroll;
+    margin: 0 0 0 0;
+    padding: 1rem 1rem 1rem 0;
+    border: 2px solid purple;
+    min-height: 55%;
+    width: 100%;
+    align-self: center;
+}
+
+.task-container::-webkit-scrollbar {
+    width: 0;
 }

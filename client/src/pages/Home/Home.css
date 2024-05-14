@@ -1,0 +1,7 @@
+.homepage-container {
+    width: 90%;
+    height: 75%;
+    border: 2px solid yellow;
+    display: flex;
+    flex-direction: column;
+}

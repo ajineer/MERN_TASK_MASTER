@@ -1,23 +1,11 @@
-.newTask .form-container {
-    display: flex;
-    flex-direction: row;
-    position: initial;
-    margin-bottom: 2rem;
-}
-
-form .submit {
-    height: 100%;
-    padding: 0.4rem;
-    margin-left: 1.25rem;
-}
-
 .form-group {
     position: relative;
     background-color: inherit;
+    margin: 0.5rem 0;
 }
 
 .form-input {
-    width: 100%;
+    width: 99%;
     padding: 0.5rem;
     border: 1px solid black;
     border-radius: 4px;
@@ -34,19 +22,6 @@ form .submit {
     font-size: 1rem;
     transition: top 0.3s, font-size 0.3s, color 0.3s;
     pointer-events: none;
-}
-
-.form-button {
-    padding: 0.5rem 1rem;
-    border: 1px solid black;
-    border-radius: 4px;
-    background-color: #007bff;
-    color: black;
-    cursor: pointer;
-    margin-left: 1.5rem;
-    &:hover {
-        background-color: lightblue;
-    }
 }
 
 .form-input:focus + .form-label,

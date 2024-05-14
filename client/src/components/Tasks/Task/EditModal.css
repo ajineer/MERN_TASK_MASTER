@@ -1,0 +1,20 @@
+.edit-task {
+    display: flex;
+    align-items: center;
+    background-color: inherit;  
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 2rem;
+}
+
+.placeholder-edit {
+    height: 1.75rem;
+    margin-left: 0.5rem;
+    padding: 0 0.5rem;
+}
+
+.modal-submit {
+    height: 1.75rem;
+    margin: 0 2rem 0 0;
+}

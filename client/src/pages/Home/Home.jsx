@@ -5,9 +5,12 @@ import { useTaskContext } from '../../hooks/useTaskContext';
 import { fetchTasksReq } from '../../routes/taskRoutes';
 import Calendar from '../../components/Calendar/CalendarContainer/Calendar'
 import './Home.css'
+import Tasks from '../../components/Tasks/Tasks';
+import NewTaskForm from '../../components/NewTaskForm/NewTaskForm';
 
 const Home = () => {
     const {tasks, dispatch} = useTaskContext()
+    const [currentDate, setCurrentDate] = useState(new Date())
     const {user} = useAuthContext()
 
     useEffect(() => {
@@ -26,7 +29,8 @@ const Home = () => {
 
     return (
         <section className="homepage-container">
-            <Calendar/>
+            <Calendar currentDate={currentDate} setCurrentDate={setCurrentDate}/>
+            <Tasks currentDate={currentDate}/>
         </section>
     )
 }

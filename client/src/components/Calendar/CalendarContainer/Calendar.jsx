@@ -5,8 +5,7 @@ import Tasks from "../../Tasks/Tasks"
 import DayGrid from "../DayGrid/DayGrid"
 import MonthYearSelector from "../MonthYearSelector/MonthYearSelector"
 
-const Calendar = () => {
-    const [currentDate, setCurrentDate] = useState(new Date())
+const Calendar = ({currentDate, setCurrentDate}) => {
     const [collapsed, setCollapsed] = useState(false)
     
     return (
@@ -52,7 +51,6 @@ const Calendar = () => {
                     <DayGrid currentDate={currentDate} setCurrentDate={setCurrentDate} />
                 </div>
             </div>
-            <Tasks currentDate={currentDate}/>
         </section>
   )
 }
