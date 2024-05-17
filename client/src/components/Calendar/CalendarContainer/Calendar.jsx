@@ -26,12 +26,7 @@ const Calendar = ({currentDate, setCurrentDate}) => {
         
         <section className="calendar-container">
             <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    alignItems: 'center',
-                    backgroundColor: primary,
-                }}
+                className="calendar-header"
             >
                 <MonthYearSelector currentDate={currentDate} setCurrentDate={setCurrentDate}/>
                 <span
@@ -42,11 +37,11 @@ const Calendar = ({currentDate, setCurrentDate}) => {
                     }}
                 >
                     <button className='collapse-button' onClick={() => setCollapsed(prev => !prev)}>
-                        {collapsed ? <i>{'\u002B'}</i> : <i>{'\u2212'}</i>}
+                        {!collapsed ? <i>{'\u002B'}</i> : <i>{'\u2212'}</i>}
                     </button>
                 </span>
             </div>
-            <div className={`expander ${!collapsed && 'expanded'}`}>
+            <div className={`expander ${collapsed && 'expanded'}`}>
                 <div className="expanded-content">
                     <DayGrid currentDate={currentDate} setCurrentDate={setCurrentDate} />
                 </div>

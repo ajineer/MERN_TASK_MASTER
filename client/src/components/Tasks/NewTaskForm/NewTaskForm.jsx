@@ -32,7 +32,7 @@ const NewTaskForm = ({currentDate}) => {
 
     return (
         <form
-            className='newTask form-container'
+            className='new-task'
             onSubmit={(e) => handleSubmit(e)}
         >
             <div className="form-group">

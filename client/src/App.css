@@ -1,9 +1,9 @@
 .app-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
     height: 100vh;
-    background-image: radial-gradient( #7495A8, #E3F5FF);
-
+    /* background-image: radial-gradient( #7495A8, #E3F5FF); */
+    background-image: radial-gradient(white, var(--secondary));
 }

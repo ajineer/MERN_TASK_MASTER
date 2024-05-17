@@ -1,11 +1,10 @@
 .form-group {
     position: relative;
     background-color: inherit;
-    margin: 0.5rem 0;
 }
 
 .form-input {
-    width: 99%;
+    width: calc(100% - 1rem);
     padding: 0.5rem;
     border: 1px solid black;
     border-radius: 4px;
@@ -26,8 +25,9 @@
 
 .form-input:focus + .form-label,
 .form-input:not(:placeholder-shown) + .form-label {
-    top: -0.27rem;
+    top: -0.49rem;
     font-size: 0.75rem;
-    color: #007bff;
-    background-color: white;
+    z-index: 2;
+    background-color: orange;
+    border-radius: 5rem;
 }

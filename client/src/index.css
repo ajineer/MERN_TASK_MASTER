@@ -1,3 +1,13 @@
+:root {
+    --primary: #A88D6D;
+    --secondary: #2D789C;
+    --accent1: #0997DB;
+    --accent2: #866032;
+    --accent3: #324E5C;
+    --red: #E13F0A;
+    --green: #76E01F;
+}
+
 html, body {
     position: fixed;
     display: block;

@@ -1,7 +1,16 @@
 .calendar-container {
   height: fit-content;
-  border: 2px solid red;
   background-color: white;
+  border-left: 0.5rem solid var(--accent1);
+  border-right: 0.5rem solid var(--accent1);
+  border-bottom: 0.5rem solid var(--accent1);
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: 'center';
+    background-color: var(--accent1);
 }
 
 .collapse-button {
@@ -19,6 +28,7 @@
     overflow: hidden;
     transition: grid-template-rows 1s;
     justify-content: center;
+    background-color: lightgray;
   }
   
   .expanded-content{
