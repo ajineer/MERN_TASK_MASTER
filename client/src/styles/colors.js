@@ -5,3 +5,5 @@ export const accent2 = "#866032";
 export const accent3 = "#324E5C";
 export const red = "#E13F0A";
 export const green = "#76E01F";
+export const hoveredRed = "#b90000";
+export const hoveredGreen = "#00c000";

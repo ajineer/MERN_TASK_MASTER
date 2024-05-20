@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react"
 import { useTaskContext } from "../../../hooks/useTaskContext"
 import { deleteTaskReq, patchTaskReq } from "../../../routes/taskRoutes"
 import './Task.css'
-import { green, red } from "../../../styles/colors"
+import { accent3, green, hoveredGreen, hoveredRed, red, secondary } from "../../../styles/colors"
 import EditModal from "./EditModal"
 
 const Task = ({task, currentDate}) => {
@@ -12,6 +12,7 @@ const Task = ({task, currentDate}) => {
   const {tasks, dispatch} = useTaskContext()
   const [edit, setEdit] = useState(false)
   const [editTaskForm, setEditTaskForm] = useState(task)
+  const [hovered, setHovered] = useState(false)
 
   
   const handleDelete = async (e) => {
@@ -41,7 +42,7 @@ const Task = ({task, currentDate}) => {
     <li 
       className='task-container'
       style={{
-          border: editTaskForm.status ? `3px solid ${green}` : `3px solid ${red}`,
+          borderLeft: `${edit ? `2px solid ${secondary}` : `2px solid ${editTaskForm.status ? (hovered ? hoveredGreen : green) : (hovered ? hoveredRed : red)}`}`
         }}  
       >
             <div className="task-details">
@@ -50,14 +51,20 @@ const Task = ({task, currentDate}) => {
               <form
                 className="check-box-form"
                 onSubmit={(e) => handleEdit(e)}
+                style={{backgroundColor: edit && accent3}}
                 >
                 <button
                   type='submit'
                   className="check-box"
                   style={{
-                    border: `1px solid ${editTaskForm.status ? green : red}`,
+                    borderStyle: 'none',
+                    // boxShadow: `inset 0 0 0 2px ${editTaskForm.status ? (hovered ? hoveredGreen : green) : (hovered ? hoveredRed : red)}`,
+                    boxShadow: `${edit ? `inset 0 0 0 2px ${secondary}` : `inset 0 0 0 2px ${editTaskForm.status ? (hovered ? hoveredGreen : green) : (hovered ? hoveredRed : red)}`}`,
+                    pointerEvents: edit && 'none',
                   }}
                   onClick={() => handleToggle()}
+                  onMouseEnter={() => setHovered(true)}
+                  onMouseLeave={() => setHovered(false)}
                   >
                   {editTaskForm.status ? <i>{'\u2714'}</i> : <i>&nbsp;&nbsp;&nbsp;</i>}
                 </button>

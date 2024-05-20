@@ -6,8 +6,9 @@ const DayOfMonth = ({dateKey, index, currentDate, setCurrentDate, day, taskByDat
     <div className='day_of_month'
         key={index}
         style={{
-            backgroundColor: isToday(day) ? 'lightgrey' : '', 
-            border: day.getDate() === currentDate.getDate() ? 'orange solid 2px' : '', 
+            backgroundColor: isToday(day) ? 'var(--secondary)' : '', 
+            color: isToday(day) ? 'white': '',
+            boxShadow: day.getDate() === currentDate.getDate() ? 'inset 0 0 0 2px orange' : 'inset 0 0 0 2px white'
         }}
         onClick={() => {setCurrentDate(day)}}
     >

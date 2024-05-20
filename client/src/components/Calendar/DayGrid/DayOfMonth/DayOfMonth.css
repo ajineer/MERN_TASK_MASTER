@@ -3,6 +3,11 @@
     justify-content: center;
     padding: 2px; 
     border-radius: 5rem;
+
+    &:hover{
+        border: 1px solid var(--accent3);
+        cursor: pointer;
+    }
 }
 
 .day_of_month_content {

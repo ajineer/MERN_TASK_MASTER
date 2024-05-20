@@ -14,11 +14,11 @@
     overflow-y: scroll;
     margin: 0 0 0 0;
     padding: 1rem 1rem 1rem 0;
-    min-height: 55%;
+    max-height: 55%;
     width: 100%;
     align-self: center;
 }
 
-.task-container::-webkit-scrollbar {
+.tasks-container::-webkit-scrollbar {
     width: 0;
 }

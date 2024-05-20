@@ -1,16 +1,16 @@
 .calendar-container {
   height: fit-content;
   background-color: white;
-  border-left: 0.5rem solid var(--accent1);
-  border-right: 0.5rem solid var(--accent1);
-  border-bottom: 0.5rem solid var(--accent1);
+  width: calc(16px/768px);
+  margin: 0 auto;
+  box-shadow: 2px 5px 5px rgb(96, 96, 96);
 }
 
 .calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: 'center';
-    background-color: var(--accent1);
+    background-image: linear-gradient(to bottom right, var(--primary), var(--accent2));
 }
 
 .collapse-button {
@@ -19,6 +19,10 @@
   padding: 1rem;
   i {
     font-size: 1.25rem;
+    padding: .25rem;
+    &:hover {
+      box-shadow: inset 0 0 2px black;
+    }
   }
 }
 
@@ -28,7 +32,6 @@
     overflow: hidden;
     transition: grid-template-rows 1s;
     justify-content: center;
-    background-color: lightgray;
   }
   
   .expanded-content{

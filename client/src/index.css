@@ -6,6 +6,8 @@
     --accent3: #324E5C;
     --red: #E13F0A;
     --green: #76E01F;
+    --hoverRed: #b90000;
+    --hoverGreen: #00c000;
 }
 
 html, body {

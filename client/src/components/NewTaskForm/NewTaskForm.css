@@ -7,6 +7,22 @@
     max-width: 25ch;
 }
 
+.new-task-form h4 {
+    width: 110%;
+}
+
 .new-task-form .form-group {
     display: flex;
+}
+
+.add-task {
+    background-color: inherit;
+    font-size: 1.5rem;
+    border: 2px solid black;
+
+    &:hover {
+        border: 2px solid var(--secondary);
+        background-color: var(--accent1);
+        color: var(--green);
+    }
 }

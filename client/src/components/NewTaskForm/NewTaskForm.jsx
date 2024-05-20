@@ -34,16 +34,15 @@ const NewTaskForm = ({currentDate}) => {
 
   return (
     <form className="new-task-form" onSubmit={(e) => handleSubmit(e)}>
-      <div>
-        <h4>{format(currentDate.getDay(), 'EEEE')}, {format(currentDate, "MMMM/dd/yyyy")}</h4>
-      </div>
+      <h4>{format(currentDate.getDay(), 'EEEE')}, {format(currentDate, "MMMM/dd/yyyy")}</h4>
       <div className="form-group">
         <input 
+          id="floatingInput"
           className="form-input"
           placeholder=""
           type="text"
           required 
-          maxLength={20} 
+          maxLength={19} 
           onChange={(e) => setTaskForm({...taskForm, name: e.target.value})}
           />
         <label className="form-label" htmlFor="floatingInput">enter task</label>

@@ -2,7 +2,7 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 2rem;
-    background-color: white;
+    background-image: linear-gradient(to bottom right, var(--primary), var(--accent2));
     padding: 1rem;
     width: 50%;
     margin: 2rem auto 0 auto;
@@ -17,15 +17,16 @@
 
 .login-button {
     width: fit-content;
-    background-color: white;
-    border: none;
+    background-color: inherit;
+    border: 2px solid inherit;
     padding: 0.5rem 1rem;
-    color: blue;
+    color: black;
     cursor: pointer;
     margin: 0 auto;
-}
+    font-size: 1.5rem;
 
-.form-button:hover {
-    background-color: white;
-    color: rgb(28, 214, 28);
+    &:hover {
+        color: var(--accent1);
+        border: 2px solid var(--accent1);
+    }
 }
