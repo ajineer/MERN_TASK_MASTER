@@ -1,19 +1,6 @@
 import Task from "../models/taskModel.js";
 import mongoose from "mongoose";
 
-// export const getTasks = async (req, res) => {
-//   const { id } = req.params;
-//   if (!mongoose.Types.ObjectId.isValid(id)) {
-//     return res.status(404).json({ error: "Invalid list ID" });
-//   }
-//   try {
-//     const tasks = await Task.find({ userId: id }).sort({ createAt: -1 });
-//     res.status(200).json(tasks);
-//   } catch (error) {
-//     res.status(500).json({ error: "Internal server Error" });
-//   }
-// };
-
 export const createTask = async (req, res) => {
   const { name, date } = req.body;
 
