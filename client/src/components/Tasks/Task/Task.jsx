@@ -84,7 +84,7 @@ const Task = ({task, currentDate}) => {
                 {/*third child of task-details */}
                 <div className='task-buttons'>
                   <button
-                    onClick={() => setEdit(prev => !prev)}
+                    onClick={() => {setEditTaskForm(task), setEdit(prev => !prev)}}
                   >
                     {edit ? '<':'\u270E'}
                   </button>

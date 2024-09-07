@@ -1,0 +1,28 @@
+Login/Signup Screen:
+    - Login
+    - Signup
+
+Home Screen:
+    - Navigation Screen
+    - interactive collapsible calendar
+    - Task widget with current date, (defaults to today)
+
+Adding tasks:
+    - add task to current day
+    - refresh the page
+    - add another task to different day, month, year
+    - refresh page
+
+Editing Tasks:
+    - mark complete
+    - refresh page
+    - edit title of task other task
+    - refresh page
+
+Deleting Tasks:
+    - delete task
+    - refresh page
+
+Log out:
+    - log out
+    - refresh
