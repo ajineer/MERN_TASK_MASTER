@@ -41,7 +41,7 @@ const Signup = () => {
                     />
                     <label className="form-label" htmlFor="floatingInput">Password</label>
                 </div>
-                <input className="login-button" type='submit' value='Login' disabled={isLoading}/>
+                <input className="login-button" type='submit' value='Sign up' disabled={isLoading}/>
                 {error && <h3>{error}</h3>}
             </form>
     )
