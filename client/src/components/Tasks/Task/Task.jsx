@@ -41,6 +41,7 @@ const Task = ({task, currentDate}) => {
   return (
     <li 
       className='task-container'
+      onKeyDown={(e) => e.key === "Escape" && edit && (setEdit(false), setEditTaskForm(task))}
       style={{
           borderLeft: `${edit ? `2px solid ${secondary}` : `2px solid ${editTaskForm.status ? (hovered ? hoveredGreen : green) : (hovered ? hoveredRed : red)}`}`
         }}  

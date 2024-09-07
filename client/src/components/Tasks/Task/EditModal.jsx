@@ -1,6 +1,7 @@
 import './EditModal.css'
 
 const EditModal = ({taskDate, handleEdit, setEdit, editTaskForm, setEditTaskForm}) => {
+
   return (
     <form 
         className="edit-task"
@@ -10,9 +11,9 @@ const EditModal = ({taskDate, handleEdit, setEdit, editTaskForm, setEditTaskForm
         className="placeholder-edit"
         placeholder={editTaskForm.name}
         maxLength={20}
+        value = {editTaskForm.name}
         required
         onChange={(e) => setEditTaskForm({...editTaskForm, name: e.target.value})}
-        onKeyDown={(e) => e.key === "Escape" && setEdit(false)}
         />
         <input
             className='modal-submit'
